@@ -50,7 +50,7 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <h1 className="page-header">Bioverse - Meet Nirav Diwan</h1>
+      <h1 className="page-header">BIOVERSE - Meet Nirav Diwan</h1>
       <div className="login-box">
         <h1 className="login-header">Login</h1>
         <input

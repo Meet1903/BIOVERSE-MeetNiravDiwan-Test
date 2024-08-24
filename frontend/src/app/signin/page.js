@@ -40,7 +40,7 @@ export default function Signin() {
 
   return (
     <div className="login-container">
-      <h1 className="page-header">Bioverse - Meet Nirav Diwan</h1>
+      <h1 className="page-header">BIOVERSE - Meet Nirav Diwan</h1>
       <div className="login-box">
         <h1 className="login-header">Sign in</h1>
         <input
