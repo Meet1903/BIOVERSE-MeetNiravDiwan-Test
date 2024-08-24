@@ -59,7 +59,6 @@ def signin():
 @app.route('/questionnaires', methods=['GET'])
 def get_questionnaires():
     questionnaires = Questionnaire.query.all()
-    print(jsonify([{"name": q.name, "id": q.id} for q in questionnaires]))
     return jsonify([{"name": q.name, "id": q.id} for q in questionnaires])
 
 @app.route('/questionnaire/<int:questionnaire_id>/questions', methods=['GET'])
@@ -105,9 +104,7 @@ def get_users():
     user_list = []
     for user in users:
         username = Users.query.filter_by(id=user[0]).first().username
-        print(username)
         user_list.append({"user_id":user[0], "count": user[1], "username": username})
-    print(users)
     return jsonify(user_list)
 
 @app.route('/admin/user_answers/<int:user_id>', methods=['GET'])
@@ -138,7 +135,6 @@ def get_user_previous_answer(user_id, question_id):
     answer = None
     if UserAnswer.query.filter_by(user_id=user_id, question_id=question_id).first():
         answer = UserAnswer.query.filter_by(user_id=user_id, question_id=question_id).order_by(desc(UserAnswer.id)).first().answer
-    print("answer:", answer)
     return jsonify({"answer": answer})
 
 @app.route('/usernames', methods=['GET'])
