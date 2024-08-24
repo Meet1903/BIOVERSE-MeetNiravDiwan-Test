@@ -23,7 +23,7 @@ export default function Signin() {
 
   const handleSignin = async () => {
     try {
-      if (username === '' || password === '') {
+      if (username.trim() === '' || password.trim() === '') {
         alert('Please enter a username and password');
         return;
       }
