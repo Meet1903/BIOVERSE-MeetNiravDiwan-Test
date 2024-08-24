@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from db import db
+from sqlalchemy import desc
 
 def create_app():
     app = Flask(__name__)
@@ -136,7 +137,7 @@ def get_user_answers_questionnaire_id(user_id, questionnaire_id):
 def get_user_previous_answer(user_id, question_id):
     answer = None
     if UserAnswer.query.filter_by(user_id=user_id, question_id=question_id).first():
-        answer = UserAnswer.query.filter_by(user_id=user_id, question_id=question_id).first().answer
+        answer = UserAnswer.query.filter_by(user_id=user_id, question_id=question_id).order_by(desc(UserAnswer.id)).first().answer
     print("answer:", answer)
     return jsonify({"answer": answer})
 
