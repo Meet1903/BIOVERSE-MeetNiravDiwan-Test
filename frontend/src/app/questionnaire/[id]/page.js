@@ -44,8 +44,11 @@ export default function Questionnaire({ params }) {
         const user_answer = await axios.get(`https://ec2-52-14-10-131.us-east-2.compute.amazonaws.com:5000/user_answers/${userId}/${id}`,
           { httpsAgent: agent }
         );
+
+        const initial_answers = {};
         user_answer.data.map((answer) => {
           const type = questionTypeMap[answer.question_id];
+          initial_answers[answer.question_id] = type === 'mcq' ? answer.answer.split(' | ') : answer.answer;
           setAnswers((prevAnswers) => ({
             ...prevAnswers,
             [answer.question_id]: type === 'mcq'
@@ -53,6 +56,41 @@ export default function Questionnaire({ params }) {
               : answer.answer,
           }));
         });
+
+        for (const question of res_questions) {
+          if (!initial_answers[question.id]) {
+            try {
+              const response = await axios.get(`https://ec2-52-14-10-131.us-east-2.compute.amazonaws.com:5000/user_previous_answer/${userId}/${question.id}`, { httpsAgent: agent });
+              const previousAnswer = response.data.answer;
+              if (previousAnswer) {
+                if (previousAnswer) {
+                  const type = questionTypeMap[question.id];
+
+                  if (type === 'mcq') {
+                    const previousAnswerArray = previousAnswer.split(' | ');
+                    const validAnswers = previousAnswerArray.filter(answer =>
+                      question.question.options.includes(answer)
+                    );
+
+                    if (validAnswers.length > 0) {
+                      setAnswers((prevAnswers) => ({
+                        ...prevAnswers,
+                        [question.id]: validAnswers,
+                      }));
+                    }
+                  } else {
+                    setAnswers((prevAnswers) => ({
+                      ...prevAnswers,
+                      [question.id]: previousAnswer,
+                    }));
+                  }
+                }
+              }
+            } catch (fetchError) {
+              console.error(`Failed to fetch new answer for question ${question.id}:`, fetchError);
+            }
+          }
+        }
       } catch (error) {
         console.error('Failed to fetch questions:', error);
       }
