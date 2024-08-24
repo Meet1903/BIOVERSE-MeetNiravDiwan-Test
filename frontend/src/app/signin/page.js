@@ -38,11 +38,15 @@ export default function Signin() {
     }
   };
 
+  const handleLogin = () => {
+    router.push('/login');
+  }
+
   return (
     <div className="login-container">
       <h1 className="page-header">BIOVERSE - Meet Nirav Diwan</h1>
       <div className="login-box">
-        <h1 className="login-header">Sign in</h1>
+        <h1 className="login-header">Sign up</h1>
         <input
           type="text"
           placeholder="Username"
@@ -57,7 +61,8 @@ export default function Signin() {
           onChange={(e) => setPassword(e.target.value)}
           className="login-input"
         />
-        <button onClick={handleSignin} className="login-button">Sign in</button>
+        <button onClick={handleSignin} className="login-button">Sign up</button>
+        <button onClick={handleLogin} className="login-button">Back to Log in</button>
       </div>
     </div>
   );

@@ -68,7 +68,7 @@ export default function Login() {
           className="login-input"
         />
         <button onClick={handleLogin} className="login-button">Log in</button>
-        <button onClick={handleSignin} className="login-button">Sign in</button>
+        <button onClick={handleSignin} className="login-button">Go to Sign up</button>
       </div>
     </div>
   );
