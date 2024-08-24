@@ -49,7 +49,7 @@ export default function Questionnaire({ params }) {
           setAnswers((prevAnswers) => ({
             ...prevAnswers,
             [answer.question_id]: type === 'mcq'
-              ? answer.answer.split(', ')
+              ? answer.answer.split('+ ')
               : answer.answer,
           }));
         });
@@ -114,7 +114,7 @@ export default function Questionnaire({ params }) {
       const formattedAnswers = Object.keys(answers).map((questionId) => ({
         question_id: questionId,
         questionnaire_id: id,
-        answer: Array.isArray(answers[questionId]) ? answers[questionId].join(', ') : answers[questionId],
+        answer: Array.isArray(answers[questionId]) ? answers[questionId].join('+ ') : answers[questionId],
       }));
 
       await axios.post('https://ec2-52-14-10-131.us-east-2.compute.amazonaws.com:5000/submit_answers', {
