@@ -67,17 +67,10 @@ export default function Questionnaire({ params }) {
                   const type = questionTypeMap[question.id];
 
                   if (type === 'mcq') {
-                    const previousAnswerArray = previousAnswer.split(' | ');
-                    const validAnswers = previousAnswerArray.filter(answer =>
-                      question.question.options.includes(answer)
-                    );
-
-                    if (validAnswers.length > 0) {
-                      setAnswers((prevAnswers) => ({
-                        ...prevAnswers,
-                        [question.id]: validAnswers,
-                      }));
-                    }
+                    setAnswers((prevAnswers) => ({
+                      ...prevAnswers,
+                      [question.id]: previousAnswer.split(' | '),
+                    }));
                   } else {
                     setAnswers((prevAnswers) => ({
                       ...prevAnswers,
