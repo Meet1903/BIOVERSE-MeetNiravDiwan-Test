@@ -7,6 +7,7 @@ import './Admin.css';
 
 export default function Admin() {
   const [users, setUsers] = useState([]);
+  const [selectedUsername, setSelectedUsername] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -36,8 +37,9 @@ export default function Admin() {
     fetchUsers();
   }, []);
 
-  const handleSelectUser = async (userId) => {
+  const handleSelectUser = async (userId, username) => {
     setSelectedUser(userId);
+    setSelectedUsername(username);
     try {
       setLoading(true);
       const response = await axios.get(`https://ec2-52-14-10-131.us-east-2.compute.amazonaws.com:5000/admin/user_answers/${userId}`,
@@ -69,7 +71,7 @@ export default function Admin() {
       ) : (
         <ul className="user-list">
           {users.map((user, index) => (
-            <li className="user-list-item" key={index} onClick={() => handleSelectUser(user.user_id)}>
+            <li className="user-list-item" key={index} onClick={() => handleSelectUser(user.user_id, user.username)}>
               User - {user.username} - {user.count} questionnaires completed
             </li>
           ))}
@@ -77,7 +79,7 @@ export default function Admin() {
       )}
       {selectedUser && !loading && (
         <div>
-          <h2 className="answers-header">User {selectedUser} Answers</h2>
+          <h2 className="answers-header">{selectedUsername}'s Answers</h2>
           {Object.keys(groupedAnswers).map((questionnaire, index) => (
             <div className="answer-item" key={index}>
               <strong className="answer-title">{questionnaire}</strong>
