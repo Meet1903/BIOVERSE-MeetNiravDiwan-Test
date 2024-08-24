@@ -52,7 +52,7 @@ export default function Login() {
     <div className="login-container">
       <h1 className="page-header">BIOVERSE - Meet Nirav Diwan</h1>
       <div className="login-box">
-        <h1 className="login-header">Login</h1>
+        <h1 className="login-header">Log in</h1>
         <input
           type="text"
           placeholder="Username"
