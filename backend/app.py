@@ -132,6 +132,14 @@ def get_user_answers_questionnaire_id(user_id, questionnaire_id):
             result.append({"question_id":answer.question_id, "answer": answer.answer})
     return jsonify(result)
 
+@app.route('/user_previous_answer/<int:user_id>/<int:question_id>', methods=['GET'])
+def get_user_previous_answer(user_id, question_id):
+    answer = None
+    if UserAnswer.query.filter_by(user_id=user_id, question_id=question_id).first():
+        answer = UserAnswer.query.filter_by(user_id=user_id, question_id=question_id).first().answer
+    print("answer:", answer)
+    return jsonify({"answer": answer})
+
 @app.route('/usernames', methods=['GET'])
 def get_usernames():
     try:
