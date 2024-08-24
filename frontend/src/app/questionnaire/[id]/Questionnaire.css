@@ -1,0 +1,79 @@
+.questionnaire-container {
+    padding: 20px;
+    background-color: #f9fafb;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.questionnaire-header {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.questionnaire-form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.question-item {
+    margin-bottom: 20px;
+}
+
+.question-label {
+    font-size: 18px;
+    margin-bottom: 8px;
+    display: block;
+    color: #444;
+}
+
+.question-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #ccc;
+    color: #333333;
+}
+
+.option-item {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.question-checkbox {
+    margin-right: 10px;
+}
+
+.option-label {
+    font-size: 16px;
+    color: #444;
+}
+
+.submit-button {
+    padding: 12px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #0070f3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #005bb5;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 16px;
+    margin-top: 10px;
+}

@@ -1,0 +1,54 @@
+.questionnaire-container {
+  padding: 20px;
+  background-color: #f0f2f5;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.questionnaire-header {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.questionnaire-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+.questionnaire-item {
+  background-color: #0070f3;
+  color: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  font-size: 18px;
+}
+
+.questionnaire-item:hover {
+  background-color: #005bb5;
+}
+
+.questionnaire-logout-button {
+  padding: 12px 20px;
+  font-size: 18px;
+  color: white;
+  background-color: #d32f2f;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.questionnaire-logout-button:hover {
+  background-color: #9a0007;
+}
